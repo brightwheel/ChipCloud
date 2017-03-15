@@ -1,14 +1,16 @@
 package fisk.chipcloud;
 
 import android.graphics.Typeface;
+import android.support.annotation.ColorInt;
 
 public class ChipCloudConfig {
 
+  public final static int UNSPECIFIED = -1;
   public Typeface typeface = null;
-  public int checkedChipColor = -1;
-  public int uncheckedChipColor = -1;
-  public int checkedTextColor = -1;
-  public int uncheckedTextColor = -1;
+  public @ColorInt int checkedChipColor = UNSPECIFIED;
+  public @ColorInt int uncheckedChipColor = UNSPECIFIED;
+  public @ColorInt int checkedTextColor = UNSPECIFIED;
+  public @ColorInt int uncheckedTextColor = UNSPECIFIED;
   public ChipCloud.SelectMode selectMode = ChipCloud.SelectMode.multi;
   public boolean useInsetPadding = false;
 
@@ -20,22 +22,22 @@ public class ChipCloudConfig {
     return this;
   }
 
-  public ChipCloudConfig checkedChipColor(int checkedChipColor){
+  public ChipCloudConfig checkedChipColor(@ColorInt int checkedChipColor){
     this.checkedChipColor = checkedChipColor;
     return this;
   }
 
-  public ChipCloudConfig uncheckedChipColor(int uncheckedChipColor){
+  public ChipCloudConfig uncheckedChipColor(@ColorInt int uncheckedChipColor){
     this.uncheckedChipColor = uncheckedChipColor;
     return this;
   }
 
-  public ChipCloudConfig checkedTextColor(int checkedTextColor){
+  public ChipCloudConfig checkedTextColor(@ColorInt int checkedTextColor){
     this.checkedTextColor = checkedTextColor;
     return this;
   }
 
-  public ChipCloudConfig uncheckedTextColor(int uncheckedTextColor){
+  public ChipCloudConfig uncheckedTextColor(@ColorInt int uncheckedTextColor){
     this.uncheckedTextColor = uncheckedTextColor;
     return this;
   }

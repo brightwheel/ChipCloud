@@ -3,10 +3,12 @@ package fisk.chipcloud;
 import android.content.Context;
 import android.graphics.Typeface;
 import android.graphics.drawable.StateListDrawable;
+import android.support.annotation.NonNull;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import eu.fiskur.chipcloud.R;
@@ -36,16 +38,14 @@ public class ChipCloud implements View.OnClickListener{
   private boolean ignoreAutoChecks = false;
 
   public ChipCloud(Context context, ViewGroup layout){
-    this.context = context;
-    this.layout = layout;
-    selectMode = SelectMode.multi;
+    this(context, layout, new ChipCloudConfig());
   }
 
-  public ChipCloud(Context context, ViewGroup layout, ChipCloudConfig config) {
+  public ChipCloud(Context context, ViewGroup layout, @NonNull ChipCloudConfig config) {
     this.context = context;
     this.layout = layout;
-    selectMode = config.selectMode;
     this.config = config;
+    selectMode = config.selectMode;
   }
 
   public void setListener(ChipListener chipListener){
@@ -122,6 +122,21 @@ public class ChipCloud implements View.OnClickListener{
       default:
         //
     }
+  }
+
+  public int[] getSelectedIndexes(){
+    final int childCount = layout.getChildCount();
+    final ArrayList<Integer> selectedIndexes = new ArrayList<>(childCount);
+    for(int i = 0; i < childCount; i++){
+      if(((ToggleChip) layout.getChildAt(i)).isChecked()) {
+        selectedIndexes.add(i);
+      }
+    }
+    final int[] result = new int[selectedIndexes.size()];
+    for(int i = 0; i < result.length; i++){
+      result[i] = selectedIndexes.get(i);
+    }
+    return result;
   }
 
   public String getLabel(int index){
